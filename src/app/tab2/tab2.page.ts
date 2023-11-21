@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActionSheetController } from '@ionic/angular';
+import { UserPhoto, PhotoService } from '../services/photo.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,13 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  constructor(public photoService: PhotoService, public actionSheetController: ActionSheetController) {}
+  addPhotoToGallery() {
+    this.photoService.addNewToGallery();
+  }
+  async ngOnInit() {
+    await this.photoService.loadSaved();
+  }
+
 
 }
